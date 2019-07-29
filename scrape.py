@@ -36,6 +36,11 @@ def fill_form(driver, search_argument):
     #make a class perhaps so that its easily customisable
     search_field_depart = driver.find_element_by_name('depart_date')
     print('success choosing depart date')
+    search_field_depart_date = driver.find_element_by_name('depart_date').click()
+    #wait until date is available
+    wait = WebDriverWait(driver, timeout=3).until(
+        EC.presence_of_element_located((By.CLASS_NAME, 'ui-datepicker-calendar')))
+
     
     #find some date picker and fill in, worth to have a for loop or dependency injection?, class='ui-datepicker-month, class='ui-datepicker-year', class='ui-datepicker-calendar' <td class=" " data-handler="selectDay" data-event="click" data-month="7" data-year="2019"><a class="ui-state-default" href="#">5</a></td>
     search_field_adult = driver.find_element_by_id('select2-adult-4a-container')
