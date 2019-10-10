@@ -2,7 +2,7 @@ import selenium
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.support import expected_condition as EC
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 url = 'https://bluewater-express.com/'
@@ -58,6 +58,6 @@ def fill_form(driver, search_argument):
     #look for search button and click it
     search_field_button = driver.find_element_by_class_name('search-avaibility').click()
 
-
+fill_form()
     
     
