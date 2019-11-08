@@ -21,9 +21,13 @@ def getdriver(url):
 def fillform(driver, port_from, port_to):
     
     search_field = driver.find_element_by_name('destination_from')
-    Select(search_field).select_by_visible_text(port_from)
+    time.sleep(2)
+    search_field.select_by_visible_text(port_from)
+    time.sleep(2) 
+    # search_destination_from = driver.find_element_by_id('select2-destination_from-dg-container')
+    # search_destination_from.select_by_visible_text(port_from)
     search_field2 = driver.find_element_by_name('destination_to')
-    Select(search_field2).select_by_visible_text(port_to)
+    search_field2.select_by_visible_text(port_to)
     search_date = driver.find_element_by_name('depart_date').click()
     #wait implicit wait
     WebDriveWait(driver, timeout=4).until(EC.implicitly_Wait((4)))

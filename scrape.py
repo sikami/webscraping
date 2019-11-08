@@ -58,6 +58,6 @@ def fill_form(driver, search_argument):
     #look for search button and click it
     search_field_button = driver.find_element_by_class_name('search-avaibility').click()
 
-fill_form()
+fill_form()   
     
     
