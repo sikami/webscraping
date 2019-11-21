@@ -1,5 +1,5 @@
 import selenium
-import unittest
+import csv
 from selenium import webdriver
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
@@ -15,7 +15,7 @@ def getdriver(url):
     Takes one argument, a URL, and returns a web driver object for that URL.
     """
     options = Options()
-    # options.add_argument('-headless')
+    options.add_argument('-headless')
     driver = webdriver.Chrome(executable_path='geckodriver',options=options)
     driver.get(url)
     wait = WebDriverWait(driver,3)
@@ -37,6 +37,7 @@ def fill_date(driver, date):
     WebDriverWait(driver,2)
     departure.clear()
     departure.send_keys(date)
+    WebDriverWait(driver,5)
 
 def oneway(driver):
     #fill choice with return or oneway
@@ -48,15 +49,34 @@ def click(driver):
     button.click()
     WebDriverWait(driver,5)    
 
-
+def scrape(driver):
+    operator = list()
+    operator_name = driver.find_elements_by_class_name('boat-title')
+    # need to find  a way to scrape this website
+    try:
+        for op in operator_name:
+            operator.append(op)
+        print(operator)
+    
+    except Exception as diag:
+        print(diag.__class__.__name__,':', diag)
+    
+    
 if __name__ == '__main__':
     driver = getdriver(url)
     fill_destination(driver,'Bali', 'Nusa Penida')
     fill_date(driver, '2019-11-30')
-    WebDriverWait(driver,5)
     oneway(driver)
-    WebDriverWait(driver,3)
     click(driver)
-    WebDriverWait(driver,5)
+    scrape(driver)
+    
+    
+    
+
+
+
+#scrape class - boat title
+#scrape class - p.route
+#scrape class - price
     
     
